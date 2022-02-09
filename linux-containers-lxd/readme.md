@@ -57,8 +57,14 @@ Recordemos que desde fuera no podemos acceder directamente al contenedor para el
 ```
 ### III) Acceso desde la máquina client
 Para poder acceder por medio de ssh desde otra máquina en este caso una máquina client (vagrant) debemos crear unas llaves ssh y la llave pública autorizarla desde el contenedor. Para ello entonces desde la máquina cliente ejecutamos [1]. Este comando nos hará unas preguntas, pero a todo le damos enter por fines prácticos.
-Ahora bien, tenemos que autorizar la llave pública generada en el contenedor para ello entonces la debemos copiar, por fortuna existe un comando que nos ayuda con ello [2].
+Ahora bien, tenemos que autorizar la llave pública generada en el contenedor para ello entonces la debemos copiar, por fortuna existe un comando que nos ayuda con ello [2]. Una vez hecho esto podremos acceder al contenedor [4].
 ```bash
 [1] ssh-keygen
 [2] ssh-copy-id -p 2222 remoto@192.168.56.5
+[3] ssh -p 2222 remoto@192.168.56.5
+```
+### IV) Cargar un archivo
+Podemos cargar un archivo por medio de ssh para esto después de lo anterior podremos usar:
+```bash
+scp -P 2222 mi_archivo.txt remoto@192.168.56.5:~/
 ```
