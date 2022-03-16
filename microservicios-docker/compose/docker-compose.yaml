@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    vsftpd:
+        image: panubo/vsftpd
+        environment:
+            - FTP_USER=juanc
+            - FTP_PASSWORD=mantis
+        volumes:
+            - /root/data:/srv
+        expose:
+            - 21
+        network_mode: host
