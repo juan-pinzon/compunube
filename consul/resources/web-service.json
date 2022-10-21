@@ -1,7 +1,7 @@
 {
   "service": {
     "Name": "web",
-    "Port": 80,
+    "Port": 3000,
     "check": {
       "args": ["curl", "localhost"],
       "interval": "3s"
