@@ -1,0 +1,14 @@
+[Unit]
+Description=AppWeb.js - making your environment variables rad
+Documentation=https://example.com
+After=network.target
+
+[Service]
+Environment=NODE_PORT=3000
+Type=simple
+User=vagrant
+ExecStart=/usr/bin/node /home/vagrant/app/index.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
