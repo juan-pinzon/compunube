@@ -1,28 +1,19 @@
-const express = require('express');
+const http = require('http');
 
-const SERVICE_NAME='mymicroservice';
-const SCHEME='http';
-const HOST='192.168.100.2';
-const PORT=3000;
-const PID = process.pid;
+const hostname = '0.0.0.0';
+const port = process.env.NODE_PORT || 3000;
+const env = process.env;
 
-/* Inicializacion del server */
-const app = express();
-const consul = new Consul();
-
-app.get('/health', function (req, res) {
-  console.log('Health check!');
-  res.end( "Ok." );
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.write("<h1>App Web</h1>")
+  for (var k in env) {
+    res.write(k + ": " + env[k] + "\n");
+  }
+  res.end();
 });
 
-app.get('/', (req, res) => {
-  console.log('GET /', Date.now());
-  res.json({
-    data: Math.floor(Math.random() * 89999999 + 10000000),
-    data_pid: PID
-  });
-});
-
-app.listen(PORT, function () {
-  console.log('Servicio iniciado en:'+SCHEME+'://'+HOST+':'+PORT+'!');
+server.listen(port, hostname, () => {
+  console.log("Server running at http://" + hostname + ":" + port + "/");
 });
