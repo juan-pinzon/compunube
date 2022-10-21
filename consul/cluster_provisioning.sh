@@ -9,6 +9,7 @@ systemctl enable haproxy
 
 #Config Haproxy
 curl https://raw.githubusercontent.com/juan-pinzon/compunube/main/consul/resources/haproxy.cfg --output /etc/haproxy/haproxy.cfg
+curl https://raw.githubusercontent.com/juan-pinzon/compunube/main/consul/resources/503sorry.http --output /etc/haproxy/errors/503sorry.http
 service haproxy reload
 
 #Create cluster
